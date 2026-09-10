@@ -1,0 +1,34 @@
+<launch>
+  <!-- 启动Karto SLAM算法节点 -->
+  <node pkg="slam_karto" type="slam_karto" name="slam_karto" output="screen">
+    <!-- 
+      重映射激光扫描话题 
+      此处将默认的'scan'话题映射到当前使用的扫描话题
+      实际使用中可按需修改为实际的激光话题名
+    -->
+    <remap from="scan" to="scan"/>
+    
+    <!-- 
+      里程计坐标系名称 
+      该坐标系用于接收里程计位姿信息
+      必须与机器人发布的里程计坐标系一致
+    -->
+    <param name="odom_frame" value="odom_combined"/>
+    
+    <!-- 
+      地图更新间隔（秒）
+      控制地图发布和保存的频率
+      时间间隔越长，计算负载越低但地图更新延迟越高
+    -->
+    <param name="map_update_interval" value="1"/>
+    
+    <!-- 
+      地图分辨率（米/像素）
+      决定地图的精细程度：
+        - 值越小地图越精细（常用0.01-0.05）
+        - 值越大计算效率越高
+        - 0.025=2.5cm/像素（高精度地图）
+    -->
+    <param name="resolution" value="0.025"/>
+  </node>
+</launch>

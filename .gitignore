@@ -1,0 +1,18 @@
+# 构建与运行产物
+**/build/
+**/devel/
+**/install/
+**/log/
+**/logs/
+**/managed_components/
+**/__pycache__/
+*.pyc
+*.log
+.runtime/
+.vscode/
+.idea/
+*.bag
+*.bag.active
+# 私人配置
+**/wifi_local.h
+firmware/esp32s3/sdkconfig.old

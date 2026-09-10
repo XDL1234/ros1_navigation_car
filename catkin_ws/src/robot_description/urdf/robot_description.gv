@@ -1,0 +1,20 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"imu_Link" [label="imu_Link"];
+"laser_Link" [label="laser_Link"];
+"wheel_left_Link" [label="wheel_left_Link"];
+"wheel_right_Link" [label="wheel_right_Link"];
+"wheel_universal_Link" [label="wheel_universal_Link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "imu_joint" [label="xyz: 0.037033 -0.018447 0.013909 \nrpy: 0 -0 0"]
+"imu_joint" -> "imu_Link"
+"base_link" -> "laser_joint" [label="xyz: -0.0064435 0.002216 0.078664 \nrpy: 0 -0 -3.14159"]
+"laser_joint" -> "laser_Link"
+"base_link" -> "wheel_left_joint" [label="xyz: -0.048791 0.0715 -0.023 \nrpy: 0 -0 0"]
+"wheel_left_joint" -> "wheel_left_Link"
+"base_link" -> "wheel_right_joint" [label="xyz: -0.048791 -0.0715 -0.023 \nrpy: 0 -0 0"]
+"wheel_right_joint" -> "wheel_right_Link"
+"base_link" -> "wheel_universal_joint" [label="xyz: 0.063633 -0.0072487 -0.034 \nrpy: 0 -0 0"]
+"wheel_universal_joint" -> "wheel_universal_Link"
+}

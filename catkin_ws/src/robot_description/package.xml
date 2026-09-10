@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package format="2">
+  <name>robot_description</name>
+  <version>1.0.0</version>
+  <description>差速小车模型、坐标变换和可视化配置。</description>
+  <license>Proprietary</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roslaunch</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>rviz</depend>
+  <depend>joint_state_publisher_gui</depend>
+  <depend>gazebo</depend>
+  <export>
+    <architecture_independent />
+  </export>
+  <maintainer email="210893798@qq.com">XDL1234</maintainer>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>tf</exec_depend>
+</package>

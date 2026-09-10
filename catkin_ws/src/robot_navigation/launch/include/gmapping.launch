@@ -1,0 +1,89 @@
+<launch>
+  <!-- 定义参数：激光扫描话题、基础坐标系、里程计坐标系 -->
+  <arg name="scan_topic"  default="scan" />
+  <arg name="base_frame"  default="base_footprint"/>
+  <arg name="odom_frame"  default="odom_combined"/>
+
+  <!-- 启动gmapping SLAM节点 -->
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+    <!-- 基础坐标系（机器人坐标系） -->
+    <param name="base_frame" value="$(arg base_frame)"/>
+    <!-- 里程计坐标系 -->
+    <param name="odom_frame" value="$(arg odom_frame)"/>
+    
+    <!-- 地图更新间隔（秒） -->
+    <param name="map_update_interval" value="0.2"/>
+    
+    <!-- 传感器参数 -->
+    <!-- 有效测距最大值（米），超过此值的测量将被忽略 -->
+    <param name="maxUrange" value="7"/>
+    <!-- 传感器最大物理量程（米） -->
+    <param name="maxRange" value="8"/>
+    
+    <!-- 扫描匹配优化参数 -->
+    <!-- 高斯分布的标准差（影响扫描点匹配权重） -->
+    <param name="sigma" value="0.05"/>
+    <!-- 相关核的大小（像素） -->
+    <param name="kernelSize" value="1"/>
+    <!-- 平移优化步长 -->
+    <param name="lstep" value="0.05"/>
+    <!-- 旋转优化步长（弧度） -->
+    <param name="astep" value="0.05"/>
+    <!-- 优化迭代次数 -->
+    <param name="iterations" value="5"/>
+    <!-- 似然计算的标准差 -->
+    <param name="lsigma" value="0.075"/>
+    <!-- 障碍物信息增益 -->
+    <param name="ogain" value="3.0"/>
+    <!-- 激光扫描降采样率（每n个点取1个） -->
+    <param name="lskip" value="1"/>
+    <!-- 扫描匹配最小得分阈值，低于此值视为匹配失败 -->
+    <param name="minimumScore" value="30"/>
+    
+    <!-- 里程计运动模型噪声参数 -->
+    <!-- 平移噪声引起的平移误差 -->
+    <param name="srr" value="0.01"/>
+    <!-- 旋转噪声引起的平移误差 -->
+    <param name="srt" value="0.02"/>
+    <!-- 平移噪声引起的旋转误差 -->
+    <param name="str" value="0.01"/>
+    <!-- 旋转噪声引起的旋转误差 -->
+    <param name="stt" value="0.02"/>
+    
+    <!-- 更新触发条件 -->
+    <!-- 最小平移距离（米）触发地图更新 -->
+    <param name="linearUpdate" value="0.05"/>
+    <!-- 最小旋转角度（弧度）触发地图更新 -->
+    <param name="angularUpdate" value="0.1"/>
+    <!-- 时间更新（秒），即使未达到运动阈值也更新 -->
+    <param name="temporalUpdate" value="1"/>
+    
+    <!-- 粒子滤波参数 -->
+    <!-- 重采样阈值（粒子权重方差阈值） -->
+    <param name="resampleThreshold" value="0.5"/>
+    <!-- 使用的粒子数量 -->
+    <param name="particles" value="8"/>
+    
+    <!-- 地图边界（米） -->
+    <param name="xmin" value="-10.0"/>
+    <param name="ymin" value="-10.0"/>
+    <param name="xmax" value="10.0"/>
+    <param name="ymax" value="10.0"/>
+    
+    <!-- 地图分辨率（米/像素） -->
+    <param name="delta" value="0.05"/>
+    
+    <!-- 似然场采样参数 -->
+    <!-- 平移采样的范围 -->
+    <param name="llsamplerange" value="0.01"/>
+    <!-- 平移采样的步长 -->
+    <param name="llsamplestep" value="0.01"/>
+    <!-- 旋转采样的范围（弧度） -->
+    <param name="lasamplerange" value="0.005"/>
+    <!-- 旋转采样的步长（弧度） -->
+    <param name="lasamplestep" value="0.005"/>
+    
+    <!-- 重映射扫描话题 -->
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+</launch>

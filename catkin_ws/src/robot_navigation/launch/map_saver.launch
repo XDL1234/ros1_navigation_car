@@ -1,0 +1,4 @@
+<launch>
+  <arg name="output" default="$(env HOME)/navigation_map"/>
+  <node pkg="map_server" type="map_saver" name="map_saver" args="-f $(arg output)" output="screen"/>
+</launch>

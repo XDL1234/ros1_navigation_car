@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 启动线速度校准节点 -->
+    <!-- Start line speed calibration node -->
+    <node pkg="chassis_bringup" type="calibrate_linear.py" name="calibrate_linear" output="screen">
+        <param name="odom_frame"      type="string" value="odom_combined"/> 
+    </node>
+</launch>

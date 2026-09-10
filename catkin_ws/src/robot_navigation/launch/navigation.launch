@@ -1,0 +1,39 @@
+<launch>
+    <!-- Arguments -->
+  <arg name="map_file" default="$(find robot_navigation)/map/map.yaml"/>
+  <arg name="simulation" default= "false"/> 
+  <arg name="planner"  default="teb" doc="opt: dwa, teb"/> 
+  <arg name="use_dijkstra" default= "true"/> 
+  <arg name="open_rviz" default="true"/>
+
+  <!--启动esp32底盘驱动-->
+  <include file="$(find chassis_bringup)/launch/bringup.launch" />
+
+  <!--启动YDLIDAR X2雷达驱动-->
+ 
+  <include file="$(find ydlidar_ros_driver)/launch/X2.launch" /> 
+  
+  <!-- Map server 启用保存过的地图-->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)">
+    <param name="frame_id" value="map"/>
+  </node>
+
+ <!-- 开启用于导航的自适应蒙特卡洛定位amcl-->
+ <include file="$(find robot_navigation)/launch/include/amcl.launch" />
+
+    <!-- move_base -->
+  <include file="$(find robot_navigation)/launch/move_base.launch" >
+    <arg name="planner"            value="$(arg planner)"/>
+    <arg name="simulation"            value="$(arg simulation)"/>
+  </include>
+
+    <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find robot_navigation)/rviz/navigation.rviz"/>
+  </group>
+
+</launch>
+
+
+

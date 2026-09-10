@@ -1,0 +1,26 @@
+<launch>
+
+  <arg name="slam_methods" default="cartographer" doc="slam type [gmapping, hector, karto, cartographer]"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="is_cartographer" value="$(eval slam_methods == 'cartographer')"/>
+
+  <!--启动底盘驱动-->
+ <include file="$(find chassis_bringup)/launch/bringup.launch" >
+    <arg name="is_cartographer" value="$(arg is_cartographer)"/>
+ </include>
+  <!--YDLIDAR X2 雷达功能包-->
+ <include file="$(find ydlidar_ros_driver)/launch/X2.launch" /> 
+
+   <!--启用建图算法-->
+  <include file="$(find robot_navigation)/launch/include/$(arg slam_methods).launch"/>
+
+    <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find robot_navigation)/rviz/slam.rviz"/>
+  </group>
+
+</launch>
+
+
+

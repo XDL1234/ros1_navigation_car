@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package format="2">
+  <name>robot_navigation</name>
+  <version>0.0.0</version>
+  <description>激光建图、AMCL定位和move_base导航配置。</description>
+  <license>Proprietary</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <export>
+    
+
+  </export>
+  <maintainer email="210893798@qq.com">XDL1234</maintainer>
+  <exec_depend>chassis_bringup</exec_depend>
+  <exec_depend>robot_description</exec_depend>
+  <exec_depend>ydlidar_ros_driver</exec_depend>
+  <exec_depend>amcl</exec_depend>
+  <exec_depend>map_server</exec_depend>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>teb_local_planner</exec_depend>
+  <exec_depend>dwa_local_planner</exec_depend>
+  <exec_depend>cartographer_ros</exec_depend>
+  <exec_depend>rviz</exec_depend>
+</package>
