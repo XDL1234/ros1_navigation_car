@@ -12,6 +12,6 @@
 
 ## 硬件与技术栈
 
-硬件采用ESP32-S3、双轮差速底盘、编码器电机、MPU6050、YDLIDAR X2及OLED显示屏，Linux电脑承担上位机计算。
+系统采用Linux电脑与ESP32-S3协作的硬件架构，配备双轮差速底盘、编码器电机、MPU6050、YDLIDAR X2及OLED显示屏。Linux电脑负责上位机计算，ESP32-S3负责底盘控制与传感器数据采集。
 
 软件使用C/C++、Python、ROS1、ESP-IDF、FreeRTOS、Cartographer、AMCL和move_base。代码按ROS功能包、底盘固件、通信脚本和雷达SDK组织。
